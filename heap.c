@@ -13,9 +13,9 @@ typedef struct {
 
 char heap[CAPACITY] = {0};
 Heap_Chunk heap_alloced[HEAP_ALLOCED_CAPACITY];
-Heap_Chunk heap_freed[HEAP_FREED_CAPACITY]
+Heap_Chunk heap_freed[HEAP_FREED_CAPACITY];
 
-size_t heap_freed = 0;
+size_t heap_freed_size = 0;
 size_t heap_alloced_size = 0;
 size_t heap_size = 0;
 
@@ -32,7 +32,7 @@ void *heap_alloc(size_t size) {
     Heap_Chunk chunk = {
       .start = result,
       .size = size,
-    
+    };
     assert(heap_alloced_size <HEAP_ALLOCED_CAPACITY);
    
     heap_alloced[heap_alloced_size++] = chunk;
@@ -40,7 +40,7 @@ void *heap_alloc(size_t size) {
     return result;
   } else {
     return 0;
-  }
+    } 
 }
 
 void heap_dump_alloced_chunks(void) {
